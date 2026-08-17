@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karang Taruna PERAONE</title>
+    <style>
+        /* CSS UNTUK DESAIN WEBSITE */
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-color);
+            background-color: #fff;
+        }
+
+        /* Header & Navigasi */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section Global */
+        section {
+            padding: 80px 5% 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        /* Beranda */
+        #beranda {
+            background-color: var(--secondary-color);
+            text-align: center;
+            align-items: center;
+        }
+
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            background-color: #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            overflow: hidden;
+        }
+
+        #beranda h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        #beranda p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 10px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Grid Umum untuk Profil, Kegiatan, Pengurus */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .card p {
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .card-list {
+            list-style: none;
+            margin-top: 10px;
+            padding: 0;
+        }
+        
+        .card-list li {
+            padding: 5px 0;
+        }
+
+        /* Galeri */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox (Modal Galeri) */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+
+        #lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Footer / Kontak */
+        #kontak {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 5%;
+            text-align: center;
+            min-height: auto;
+        }
+
+        #kontak a {
+            color: #ffdd57;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .contact-info p {
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            #beranda h1 { font-size: 2.2rem; }
+            .hero-logo { width: 120px; height: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Header -->
+    <header>
+        <div class="logo-text">PERAONE</div>
+        <nav>
+            <ul>
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#kegiatan">Kegiatan</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="#pengurus">Pengurus</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 2. Halaman Beranda -->
+    <section id="beranda">
+        <!-- Tempat Logo -->
+        <div class="hero-logo">
+            [LOGO PERAONE]
+        </div>
+        
+        <h1>Karang Taruna PERAONE</h1>
+        <p>Pule, Selogiri, Wonogiri</p>
+        
+        <div>
+            <a href="#kegiatan" class="btn">Lihat Kegiatan</a>
+            <a href="#profil" class="btn btn-outline">Tentang Kami</a>
+        </div>
+    </section>
+
+    <!-- 3. Profil -->
+    <section id="profil">
+        <h2 class="section-title">Profil Kami</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>Tentang Kami</h3>
+                <p>Karang Taruna PERAONE adalah wadah pergerakan pemuda-pemudi Pule yang menjunjung tinggi semangat persaudaraan. Kami percaya bahwa kekompakan dan gotong royong adalah kunci utama dalam membangun lingkungan yang positif dan harmonis.</p>
+            </div>
+            <div class="card">
+                <h3>Visi</h3>
+                <p>Menciptakan generasi muda yang solid, tangguh, dan berdaya saing tinggi melalui kolaborasi dan kekompakan demi memajukan masyarakat Desa Pule.</p>
+            </div>
+            <div class="card">
+                <h3>Misi</h3>
+                <ul class="card-list">
+                    <li>1. Mempererat tali silaturahmi dan menjaga kekompakan antar pemuda.</li>
+                    <li>2. Mengadakan kegiatan sosial yang membawa manfaat nyata bagi warga.</li>
+                    <li>3. Menjadi ruang kolaborasi untuk mengembangkan kreativitas pemuda.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Kegiatan -->
+    <section id="kegiatan">
+        <h2 class="section-title">Kegiatan Kami</h2>
+        <div class="grid-container">
+            <div class="card">Kerja Bakti</div>
+            <div class="card">Kegiatan Sosial</div>
+            <div class="card">Perayaan HUT RI</div>
+            <div class="card">Olahraga</div>
+            <div class="card">Kegiatan Kepemudaan</div>
+            <div class="card">Kegiatan Masyarakat Lainnya</div>
+        </div>
+    </section>
+
+    <!-- 5. Galeri -->
+    <section id="galeri">
+        <h2 class="section-title">Galeri Foto</h2>
+        <div class="gallery-grid">
+            <img src="https://via.placeholder.com/400x300?text=Foto+Kegiatan+1" alt="Kegiatan 1" onclick="openLightbox(this.src)">
+            <img src="https://via.placeholder.com/400x300?text=Foto+Kegiatan+2" alt="Kegiatan 2" onclick="openLightbox(this.src)">
+            <img src="https://via.placeholder.com/400x300?text=Foto+Kegiatan+3" alt="Kegiatan 3" onclick="openLightbox(this.src)">
+            <img src="https://via.placeholder.com/400x300?text=Foto+Kegiatan+4" alt="Kegiatan 4" onclick="openLightbox(this.src)">
+        </div>
+    </section>
+
+    <!-- Tempat Pop-up / Lightbox Galeri -->
+    <div id="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+
+    <!-- 6. Pengurus -->
+    <section id="pengurus">
+        <h2 class="section-title">Susunan Pengurus</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h4>Ketua</h4>
+                <p>ARDIAN</p>
+            </div>
+            <div class="card">
+                <h4>Wakil Ketua</h4>
+                <p>FARIS</p>
+            </div>
+            <div class="card">
+                <h4>Sekretaris</h4>
+                <p>ARIL<br>LULU</p>
+            </div>
+            <div class="card">
+                <h4>Bendahara</h4>
+                <p>SACI<br>INTAN</p>
+            </div>
+            <div class="card" style="grid-column: 1 / -1;">
+                <h4>Seksi - Seksi</h4>
+                <p>EGI &bull; NABILA &bull; UPIK &bull; TYAS &bull; NIAR &bull; SEKAR AYU</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Kontak & Lokasi -->
+    <section id="kontak">
+        <h2>Hubungi Kami</h2>
+        <br>
+        <div class="contact-info">
+            <p>📍 <strong>Alamat:</strong> Pule RT 01/RW 04, Desa Pule, Kecamatan Selogiri, Kabupaten Wonogiri, Jawa Tengah.</p>
+            <p>
+                📸 <strong>Instagram:</strong> <a href="https://www.instagram.com/kt_peraonepule?igsh=Z2l0dnZ1bm5rMDk0&igsi=Z2l0dnZ1bm5rMDk0" target="_blank">@kt_peraonepule</a>
+            </p>
+            <p>
+                📧 <strong>Email:</strong> <a href="mailto:peraonepule@gmail.com">peraonepule@gmail.com</a>
+            </p>
+            <p>
+                📱 <strong>WhatsApp:</strong> <a href="https://wa.me/6281234567890" target="_blank">Hubungi Kami</a>
+            </p>
+        </div>
+        <br>
+        <p>📍 <strong>Lokasi Kami di Google Maps:</strong></p>
+        <p>[ Tempat Iframe Google Maps ]</p>
+    </section>
+
+    <!-- JAVASCRIPT UNTUK FITUR GALERI (Klik foto jadi besar) -->
+    <script>
+        function openLightbox(imageSrc) {
+            document.getElementById('lightbox').style.display = 'flex';
+            document.getElementById('lightbox-img').src = imageSrc;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
